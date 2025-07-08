@@ -30,24 +30,32 @@ Clients send theirs request to Node.js Server.
 
 Node.js Server receives those requests and places them into a processing Queue that is known as “Event Queue”.
 
-Node.js uses JavaScript Event Loop to process each client request. This Event loop is an indefinite loop to receive requests and process them. Event Loop continuously checks for client’s requests placed in Event Queue. If requests are available, then it process them one by one.
+Node.js uses JavaScript Event Loop to process each client request. This Event loop is an indefinite loop to receive requests and process them.
+ Event Loop continuously checks for client’s requests placed in Event Queue.
+ If requests are available, then it process them one by one.
 
-If the client request does not require any blocking I/O operations, then it process everything, prepare the response and send it back to the client.
+If the client request does not require any blocking I/O operations, then it process everything,
+ prepare the response and send it back to the client.
 
-If the client request requires some blocking I/O operations like interacting with database, file system, external services then it uses C++ thread pool to process these operations.
+If the client request requires some blocking I/O operations like interacting with database, file system, 
+external services then it uses C++ thread pool to process these operations.
 
 Thread pool process steps are as:
 
-Event loop checks for thread availability from internal thread pool. If thread is available, then picks up one thread and assign the client request to that thread.
+Event loop checks for thread availability from internal thread pool. If thread is available,
+ then picks up one thread and assign the client request to that thread.
 
-Now, this thread is responsible for handling that request, process it, perform blocking I/O operations, prepare the response and send it back to the Event Loop.
+Now, this thread is responsible for handling that request, process it, perform blocking I/O operations, 
+prepare the response and send it back to the Event Loop.
 
 Finally, the Event Loop sends the response to the respective client
 ![alt text](image-1.png)
 
 # What is event loop
-The event loop is a central component of Node.js that manages all the asynchronous operations. It constantly checks for new events in the event queue and processes them in a loop.
-Event Queue: The event queue holds various types of events, such as callbacks, timers, and I/O events, that are generated as a result of asynchronous operations. These events are added to the queue when they are triggered but are not executed immediately.
+The event loop is a central component of Node.js that manages all the asynchronous operations.
+ It constantly checks for new events in the event queue and processes them in a loop.
+Event Queue: The event queue holds various types of events, such as callbacks, timers, and I/O events, 
+that are generated as a result of asynchronous operations. These events are added to the queue when they are triggered but are not executed immediately.
 
 Callbacks: Callbacks are functions that are provided as arguments to asynchronous functions. They are executed once the corresponding asynchronous operation is completed and the event loop reaches the event in the queue. This mechanism allows Node.js to perform tasks without waiting for the completion of one task before moving on to the next.
 
@@ -60,7 +68,7 @@ Local modules
 Third-party modules
  ex: http
 url
-path
+path+
 fs
 os
 You can use the built-in modules with the syntax below.
